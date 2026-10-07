@@ -1,6 +1,6 @@
 #include <iostream>
 
-bool checkInput()
+bool check_input()
 {
   if (std::cin.fail()) {
     std::cerr << "Input error";
@@ -13,28 +13,28 @@ int main()
 {
   int prev = 0;
   std::cin >> prev;
-  if (!checkInput()) {
+  if (!check_input()) {
     std::cerr << "Input error";
     return 1;
   }
   if (prev == 0) {
-    std::cout << "0";
+    std::cout << "0\n";
     return 0;
   }
 
   int curr = 0;
   std::cin >> curr;
-  if (!checkInput()) {
+  if (!check_input()) {
     std::cerr << "Input error";
     return 1;
   }
   if (curr == 0) {
-    std::cout << "0";
+    std::cout << "0\n";
     return 0;
   }
 
   int count = 0;
-  int countNextIsSum = 0;
+  int count_next_is_sum = 0;
   int next = 0;
 
   while ((std::cin >> next) && (next != 0)) {
@@ -42,7 +42,7 @@ int main()
       count++;
     }
     if (next == (prev + curr)) {
-      countNextIsSum++;
+      count_next_is_sum++;
     }
     prev = curr;
     curr = next;
@@ -52,6 +52,5 @@ int main()
     return 1;
   }
   std::cout << count << "\n";
-  std::cout << countNextIsSum << "\n";
+  std::cout << count_next_is_sum << "\n";
 }
-
