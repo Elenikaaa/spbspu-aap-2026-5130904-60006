@@ -1,6 +1,6 @@
 #include <iostream>
 
-bool check_input()
+bool checkInput()
 {
   if (std::cin.fail()) {
     std::cerr << "Input error";
@@ -13,7 +13,7 @@ int main()
 {
   int prev = 0;
   std::cin >> prev;
-  if (!check_input()) {
+  if (!checkInput()) {
     std::cerr << "Input error";
     return 1;
   }
@@ -24,7 +24,7 @@ int main()
 
   int curr = 0;
   std::cin >> curr;
-  if (!check_input()) {
+  if (!checkInput()) {
     std::cerr << "Input error";
     return 1;
   }
