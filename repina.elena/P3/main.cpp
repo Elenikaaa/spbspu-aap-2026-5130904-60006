@@ -7,6 +7,14 @@
 namespace repina {
   constexpr int exitBadArguments = 1;
   constexpr int exitError = 2;
+  constexpr int maxElements = 10000;
+  constexpr int maxNumber = 1000;
+  constexpr int base = 10;
+  constexpr double roundFactor = 10.0;
+  constexpr int requiredArgCount = 4;
+  constexpr int modeStatic = 1;
+  constexpr int modeDynamic = 2;
+
   bool parseInt(const char* s, int& result)
   {
     int n = 0;
@@ -17,8 +25,8 @@ namespace repina {
       if (s[i] < '0' || s[i] > '9') {
         return false;
       }
-      n = n * 10 + (s[i] - '0');
-      if (n > 1000) {
+      n = n * base + (s[i] - '0');
+      if (n > maxNumber) {
         return false;
       }
     }
@@ -119,7 +127,7 @@ namespace repina {
 
 int main(int argc, char** argv)
 {
-  if (argc != 4) {
+  if (argc != repina::requiredArgCount) {
     std::cerr << "not enough arguments" << "\n";
     return repina::exitBadArguments;
   }
@@ -127,7 +135,7 @@ int main(int argc, char** argv)
   const char* input_path = argv[2];
   const char* output_path = argv[3];
   int mode_num = 0;
-  if (!repina::parseInt(mode, mode_num) || mode_num < 1 || mode_num > 2) {
+  if (!repina::parseInt(mode, mode_num) || mode_num < repina::modeStatic || mode_num > repina::modeDynamic) {
     std::cerr << "mode error" << "\n";
     return repina::exitBadArguments;
   }
@@ -148,27 +156,27 @@ int main(int argc, char** argv)
     std::cerr << "cannot read rows and cols" << "\n";
     return repina::exitError;
   }
-  if (!repina::checkRowsAndCols(rows, cols, 10000)) {
+  if (!repina::checkRowsAndCols(rows, cols, repina::maxElements)) {
     return repina::exitError;
   }
 
-  if (mode_num == 1) {
-    int data[10000] = {};
-    double res[10000] = {};
+  if (mode_num == repina::modeStatic) {
+    int data[repina::maxElements] = {};
+    double res[repina::maxElements] = {};
     if (!repina::readElements(input, data, rows * cols)) {
       return repina::exitError;
     }
     repina::buildSmoothedMatrix(data, res, rows, cols);
     output << rows << " " << cols << "\n";
     for (int i = 0; i < rows * cols; i++) {
-      const double rounded = std::round(res[i] * 10) / 10;
+      const double rounded = std::round(res[i] * repina::roundFactor) / repina::roundFactor;
       output << rounded << " ";
     }
     output << "\n";
     output << repina::findMaxDiagonalSum(data, rows, cols) << "\n";
   }
 
-  if (mode_num == 2) {
+  if (mode_num == repina::modeDynamic) {
     int* const data = new int[rows * cols];
     double* const res = new double[rows * cols];
     if (!repina::readElements(input, data, rows * cols)) {
@@ -179,7 +187,7 @@ int main(int argc, char** argv)
     repina::buildSmoothedMatrix(data, res, rows, cols);
     output << rows << " " << cols << "\n";
     for (int i = 0; i < rows * cols; i++) {
-      const double rounded = std::round(res[i] * 10) / 10;
+      const double rounded = std::round(res[i] * repina::roundFactor) / repina::roundFactor;
       output << rounded << " ";
     }
     output << "\n";
@@ -190,3 +198,4 @@ int main(int argc, char** argv)
   }
   return 0;
 }
+
