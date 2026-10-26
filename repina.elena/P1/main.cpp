@@ -1,4 +1,5 @@
 #include <iostream>
+#include <limits>
 constexpr int inputErrorCode = 1;
 constexpr int errorSum = 2;
 int main()
@@ -32,6 +33,10 @@ int main()
   while ((std::cin >> next) && (next != 0)) {
     if ((prev > curr) && (curr > next)) {
       if (count > std::numeric_limits<int>::max()-1)
+      {
+        std::cerr << "Overflow\n";
+        return errorSum;
+      }
       count++;
     }
     if (next == (prev + curr)) {
