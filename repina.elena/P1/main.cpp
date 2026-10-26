@@ -2,8 +2,7 @@
 #include <limits>
 constexpr int inputErrorCode = 1;
 constexpr int errorSum = 2;
-int main()
-{
+int main() {
   int prev = 0;
   std::cin >> prev;
   if (!(std::cin >> prev)) {
@@ -49,8 +48,7 @@ int main()
     return inputErrorCode;
   }
   std::cout << count << "\n";
-  if (count_next_is_sum == 0)
-  {
+  if (count_next_is_sum == 0) {
     return errorSum;
   }
   std::cout << count_next_is_sum << "\n";
