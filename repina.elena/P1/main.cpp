@@ -1,21 +1,13 @@
 #include <iostream>
-
-bool checkInput()
-{
-  if (std::cin.fail()) {
-    std::cerr << "Input error";
-    return false;
-  }
-  return true;
-}
-
+constexpr int inputErrorCode = 1;
+constexpr int errorSum = 2;
 int main()
 {
   int prev = 0;
   std::cin >> prev;
-  if (!checkInput()) {
+  if (!(std::cin >> prev)) {
     std::cerr << "Input error";
-    return 1;
+    return inputErrorCode;
   }
   if (prev == 0) {
     std::cout << "0\n";
@@ -24,9 +16,9 @@ int main()
 
   int curr = 0;
   std::cin >> curr;
-  if (!checkInput()) {
+  if (!(std::cin >> curr)) {
     std::cerr << "Input error";
-    return 1;
+    return inputErrorCode;
   }
   if (curr == 0) {
     std::cout << "0\n";
@@ -39,6 +31,7 @@ int main()
 
   while ((std::cin >> next) && (next != 0)) {
     if ((prev > curr) && (curr > next)) {
+      if (count > std::numeric_limits<int>::max()-1)
       count++;
     }
     if (next == (prev + curr)) {
@@ -49,8 +42,12 @@ int main()
   }
   if (!std::cin && !std::cin.eof()) {
     std::cerr << "Error: Invalid character in input\n";
-    return 1;
+    return inputErrorCode;
   }
   std::cout << count << "\n";
+  if (count_next_is_sum == 0)
+  {
+    return errorSum;
+  }
   std::cout << count_next_is_sum << "\n";
 }
