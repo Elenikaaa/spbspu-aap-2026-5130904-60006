@@ -29,8 +29,9 @@ int main()
   int count = 0;
   int count_next_is_sum = 0;
   int next = 0;
-
+  bool hasThird = false;
   while ((std::cin >> next) && (next != 0)) {
+    hasThird = true;
     if ((prev > curr) && (curr > next)) {
       if (count == std::numeric_limits< int >::max()) {
         std::cerr << "Overflow\n";
@@ -53,7 +54,7 @@ int main()
     return inputErrorCode;
   }
   std::cout << count << "\n";
-  if (count_next_is_sum == 0) {
+  if (!hasThird) {
     return errorSum;
   }
   std::cout << count_next_is_sum << "\n";
