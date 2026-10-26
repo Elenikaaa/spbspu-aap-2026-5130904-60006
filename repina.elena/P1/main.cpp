@@ -31,13 +31,17 @@ int main() {
 
   while ((std::cin >> next) && (next != 0)) {
     if ((prev > curr) && (curr > next)) {
-      if (count > std::numeric_limits<int>::max() - 1) {
+      if (count == std::numeric_limits<int>::max()) {
         std::cerr << "Overflow\n";
         return errorSum;
       }
       count++;
     }
     if (next == (prev + curr)) {
+      if (count_next_is_sum == std::numeric_limits<int>::max()) {
+        std::cerr << "Overflow\n";
+        return errorSum;
+      }
       count_next_is_sum++;
     }
     prev = curr;
