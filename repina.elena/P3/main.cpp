@@ -131,9 +131,9 @@ int main(int argc, char** argv)
     std::cerr << "not enough arguments" << "\n";
     return repina::exitBadArguments;
   }
-  const char* mode = argv[1];
-  const char* input_path = argv[2];
-  const char* output_path = argv[3];
+  const char* const mode = argv[1];
+  const char* const input_path = argv[2];
+  const char* const output_path = argv[3];
   int mode_num = 0;
   if (!repina::parseInt(mode, mode_num) || mode_num < repina::modeStatic || mode_num > repina::modeDynamic) {
     std::cerr << "mode error" << "\n";
@@ -198,4 +198,3 @@ int main(int argc, char** argv)
   }
   return 0;
 }
-
