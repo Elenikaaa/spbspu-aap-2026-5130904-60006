@@ -2,7 +2,8 @@
 #include <limits>
 constexpr int inputErrorCode = 1;
 constexpr int errorSum = 2;
-int main() {
+int main()
+{
   int prev = 0;
   std::cin >> prev;
   if (!(std::cin >> prev)) {
@@ -31,14 +32,14 @@ int main() {
 
   while ((std::cin >> next) && (next != 0)) {
     if ((prev > curr) && (curr > next)) {
-      if (count == std::numeric_limits<int>::max()) {
+      if (count == std::numeric_limits< int >::max()) {
         std::cerr << "Overflow\n";
         return errorSum;
       }
       count++;
     }
     if (next == (prev + curr)) {
-      if (count_next_is_sum == std::numeric_limits<int>::max()) {
+      if (count_next_is_sum == std::numeric_limits< int >::max()) {
         std::cerr << "Overflow\n";
         return errorSum;
       }
