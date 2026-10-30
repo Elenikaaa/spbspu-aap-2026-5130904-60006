@@ -1,14 +1,16 @@
 #include <iostream>
 #include <limits>
+namespace repina {
 constexpr int inputErrorCode = 1;
 constexpr int errorSum = 2;
+}
 int main()
 {
   int prev = 0;
   std::cin >> prev;
   if (!(std::cin >> prev)) {
     std::cerr << "Input error";
-    return inputErrorCode;
+    return repina::inputErrorCode;
   }
   if (prev == 0) {
     std::cout << "0\n";
@@ -16,10 +18,9 @@ int main()
   }
 
   int curr = 0;
-  std::cin >> curr;
   if (!(std::cin >> curr)) {
     std::cerr << "Input error";
-    return inputErrorCode;
+    return repina::inputErrorCode;
   }
   if (curr == 0) {
     std::cout << "0\n";
@@ -35,27 +36,27 @@ int main()
     if ((prev > curr) && (curr > next)) {
       if (count == std::numeric_limits< int >::max()) {
         std::cerr << "Overflow\n";
-        return errorSum;
+        return repina::errorSum;
       }
       count++;
     }
     if (next == (prev + curr)) {
       if (count_next_is_sum == std::numeric_limits< int >::max()) {
         std::cerr << "Overflow\n";
-        return errorSum;
+        return repina::errorSum;
       }
       count_next_is_sum++;
     }
     prev = curr;
     curr = next;
   }
-  if (!std::cin && !std::cin.eof()) {
+  if (!std::cin) {
     std::cerr << "Error: Invalid character in input\n";
-    return inputErrorCode;
+    return repina::inputErrorCode;
   }
   std::cout << count << "\n";
   if (!flag) {
-    return errorSum;
+    return repina::errorSum;
   }
   std::cout << count_next_is_sum << "\n";
 }
