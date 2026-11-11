@@ -113,8 +113,8 @@ int main() {
     std::free(str2);
     return repina::inputerror;
   }
-  char num = 'a';
-  char repl = 'c';
+  const char num = 'a';
+  const char repl = 'c';
   repina::letterSymbols(str2, num, repl, res);
   std::cout << res << "\n";
 
