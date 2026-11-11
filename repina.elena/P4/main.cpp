@@ -5,7 +5,7 @@
 namespace repina {
   constexpr std::size_t inputerror = 1;
 
-  void get_uncommon_symbols(const char* str1, const char* str2, char* dest)
+  void getUncommonSymbols(const char* str1, const char* str2, char* dest)
   {
     const char* p = str1;
     const char* p2 = str2;
@@ -42,10 +42,10 @@ namespace repina {
     dest[len_dest] = '\0';
   }
 
-  void letter_symbols(const char* str1, char num, char repl, char* res)
+  void letterSymbols(const char* str1, char num, char repl, char* res)
   {
     std::size_t len_res = 0;
-    std::size_t len = strlen(str1);
+    const std::size_t len = strlen(str1);
     for (std::size_t i = 0; i < len; ++i) {
       if (str1[i] == num) {
         res[i] = repl;
@@ -61,8 +61,8 @@ namespace repina {
 
 int main()
 {
-  const char* str1 = "abc_ef";
-  std::size_t size_1 = std::strlen(str1) + 1;
+  const char* const str1 = "abc_ef";
+  const std::size_t size_1 = std::strlen(str1) + 1;
 
   std::size_t size = 10;
   char* str2 = static_cast< char* >(malloc(size * sizeof(char)));
@@ -76,7 +76,7 @@ int main()
   while (std::cin.get(c) && c != '\n') {
     if (str2_len >= size - 1) {
       size += 10;
-      char* new_str = static_cast< char* >(malloc(size * sizeof(char)));
+      char* const new_str = static_cast< char* >(malloc(size * sizeof(char)));
 
       if (new_str == nullptr) {
         std::cerr << "Memory allocation error\n";
@@ -93,18 +93,18 @@ int main()
   }
   str2[str2_len] = '\0';
 
-  char* dest = static_cast< char* >(malloc((size + size_1) * sizeof(char)));
+  char* const dest = static_cast< char* >(malloc((size + size_1) * sizeof(char)));
   if (dest == nullptr) {
     std::cerr << "Memory allocation error\n";
     std::free(str2);
     return repina::inputerror;
   }
 
-  repina::get_uncommon_symbols(str1, str2, dest);
+  repina::getUncommonSymbols(str1, str2, dest);
   std::cout << dest << "\n";
   std::free(dest);
 
-  char* res = static_cast< char* >(malloc(size * sizeof(char)));
+  char* const res = static_cast< char* >(malloc(size * sizeof(char)));
   if (res == nullptr) {
     std::cerr << "Memory allocation error\n";
     std::free(str2);
@@ -127,11 +127,10 @@ int main()
     return repina::inputerror;
   }
 
-  repina::letter_symbols(str2, num, repl, res);
+  repina::letterSymbols(str2, num, repl, res);
   std::cout << res << "\n";
 
   std::free(str2);
   std::free(res);
   return 0;
 }
-
