@@ -62,7 +62,7 @@ int main() {
   std::size_t size_1 = std::strlen(str1) + 1;
 
   std::size_t size = 10;
-  char* str2 = static_cast<char*>(malloc(size * sizeof(char)));
+  char* str2 = static_cast< char* >(malloc(size * sizeof(char)));
   if (str2 == nullptr) {
     std::cerr << "Memory allocation error\n";
     return repina::inputerror;
@@ -73,7 +73,7 @@ int main() {
   while (std::cin.get(c) && c != '\n') {
     if (str2_len >= size - 1) {
       size += 10;
-      char* new_str = static_cast<char*>(malloc(size * sizeof(char)));
+      char* new_str = static_cast< char* >(malloc(size * sizeof(char)));
 
       if (new_str == nullptr) {
         std::cerr << "Memory allocation error\n";
@@ -90,7 +90,7 @@ int main() {
   }
   str2[str2_len] = '\0';
 
-  char* dest = static_cast<char*>(malloc((size + size_1) * sizeof(char)));
+  char* dest = static_cast< char* >(malloc((size + size_1) * sizeof(char)));
   if (dest == nullptr) {
     std::cerr << "Memory allocation error\n";
     std::free(str2);
@@ -101,7 +101,7 @@ int main() {
   std::cout << dest << "\n";
   std::free(dest);
 
-  char* res = static_cast<char*>(malloc(size * sizeof(char)));
+  char* res = static_cast< char* >(malloc(size * sizeof(char)));
   if (res == nullptr) {
     std::cerr << "Memory allocation error\n";
     std::free(str2);
@@ -131,3 +131,4 @@ int main() {
   std::free(res);
   return 0;
 }
+
