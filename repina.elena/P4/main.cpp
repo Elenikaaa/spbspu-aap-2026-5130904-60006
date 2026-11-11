@@ -59,8 +59,7 @@ namespace repina {
   }
 }
 
-int main()
-{
+int main() {
   const char* const str1 = "abc_ef";
   const std::size_t size_1 = std::strlen(str1) + 1;
 
@@ -92,7 +91,11 @@ int main()
     str2[str2_len++] = c;
   }
   str2[str2_len] = '\0';
-
+  if (str2_len == 0) {
+    std::cerr << "Input error\n";
+    std::free(str2);
+    return repina::inputerror;
+  }
   char* const dest = static_cast< char* >(malloc((size + size_1) * sizeof(char)));
   if (dest == nullptr) {
     std::cerr << "Memory allocation error\n";
@@ -110,8 +113,8 @@ int main()
     std::free(str2);
     return repina::inputerror;
   }
-  const char num = 'a';
-  const char repl = 'c';
+  char num = 'a';
+  char repl = 'c';
   repina::letterSymbols(str2, num, repl, res);
   std::cout << res << "\n";
 
@@ -119,4 +122,3 @@ int main()
   std::free(res);
   return 0;
 }
-
