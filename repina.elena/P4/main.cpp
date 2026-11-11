@@ -59,7 +59,8 @@ namespace repina {
   }
 }
 
-int main() {
+int main()
+{
   const char* const str1 = "abc_ef";
   const std::size_t size_1 = std::strlen(str1) + 1;
 
@@ -122,3 +123,4 @@ int main() {
   std::free(res);
   return 0;
 }
+
