@@ -5,7 +5,8 @@
 namespace repina {
   constexpr std::size_t inputerror = 1;
 
-  void get_uncommon_symbols(const char* str1, const char* str2, char* dest) {
+  void get_uncommon_symbols(const char* str1, const char* str2, char* dest)
+  {
     const char* p = str1;
     const char* p2 = str2;
     std::size_t len_dest = 0;
@@ -41,7 +42,8 @@ namespace repina {
     dest[len_dest] = '\0';
   }
 
-  void letter_symbols(const char* str1, char num, char repl, char* res) {
+  void letter_symbols(const char* str1, char num, char repl, char* res)
+  {
     std::size_t len_res = 0;
     std::size_t len = strlen(str1);
     for (std::size_t i = 0; i < len; ++i) {
@@ -57,7 +59,8 @@ namespace repina {
   }
 }
 
-int main() {
+int main()
+{
   const char* str1 = "abc_ef";
   std::size_t size_1 = std::strlen(str1) + 1;
 
