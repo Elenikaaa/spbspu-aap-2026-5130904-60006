@@ -110,23 +110,8 @@ int main()
     std::free(str2);
     return repina::inputerror;
   }
-
-  char num = 0;
-  if (!std::cin.get(num)) {
-    std::cerr << "Input error\n";
-    std::free(res);
-    std::free(str2);
-    return repina::inputerror;
-  }
-
-  char repl = 0;
-  if (!std::cin.get(repl)) {
-    std::cerr << "Input error\n";
-    std::free(res);
-    std::free(str2);
-    return repina::inputerror;
-  }
-
+  char num = 'a';
+  char repl = 'c';
   repina::letterSymbols(str2, num, repl, res);
   std::cout << res << "\n";
 
